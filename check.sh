@@ -309,7 +309,7 @@ echo "$md5">> $db
 echo "$sha1">> $db
 			
 echo searching exact version number
-version=$(pestr $tmp/$filename | grep -m -A1 "ProductVersion" | grep -v "ProductVersion")
+version=$(pestr $tmp/$filename | grep -m1 -A1 "ProductVersion" | grep -v "ProductVersion")
 echo $version
 echo
 
