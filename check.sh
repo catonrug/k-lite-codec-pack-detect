@@ -285,6 +285,9 @@ echo $url | \
 sed "s/^.*\///g")
 
 echo Downloading $url
+size=$(curl -o /dev/null -s -w %{size_download} $url)
+if [ $size -gt 99999 ]; then
+
 wget $url -O $tmp/$filename -q
 echo
 
@@ -335,7 +338,13 @@ $md5
 $sha1"
 							} done
 							echo
+#end of database check
+fi
 
+else
+echo file url not reachable in torrent file
+
+#end of file size check
 fi
 
 } done
