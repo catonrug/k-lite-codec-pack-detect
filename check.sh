@@ -284,7 +284,8 @@ filename=$( \
 echo $url | \
 sed "s/^.*\///g")
 
-echo Downloading $url
+echo Trying to get:
+echo $url
 size=$(curl -o /dev/null -s -w %{size_download} $url)
 if [ $size -gt 99999 ]; then
 
@@ -329,21 +330,22 @@ echo Make sure you have created \"$appname\" directory inside it!
 echo
 fi
 
-							#lets send emails to all people in "posting" file
-							emails=$(cat ../posting | sed '$aend of file')
-							printf %s "$emails" | while IFS= read -r onemail
-							do {
-								python ../send-email.py "$onemail" "$filename $version" "$url
+#lets send emails to all people in "posting" file
+emails=$(cat ../posting | sed '$aend of file')
+printf %s "$emails" | while IFS= read -r onemail
+do {
+python ../send-email.py "$onemail" "$filename $version" "https://f4e2f502eb9b965f53ed353a28336ebbc041e45b.googledrive.com/host/0B_3uBwg3RcdVMlJFWkxIN0Vvckk/$newfilename 
 $md5
 $sha1"
-							} done
-							echo
+} done
+echo
+
 #end of database check
 fi
 
 else
 echo file url not reachable in torrent file
-
+echo
 #end of file size check
 fi
 
