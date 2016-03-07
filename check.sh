@@ -54,6 +54,12 @@ if [ ! -d "../gd" ]; then
   mkdir -p "../gd"
 fi
 
+if [ -f ~/uploader_credentials.txt ]; then
+sed "s/folder = test/folder = `echo $appname`/" ../uploader.cfg > ../gd/$appname.cfg
+else
+echo google upload will not be used cause ~/uploader_credentials.txt do not exist
+fi
+
 #create a new array [linklist] with internet links inside and add one extra line
 linklist=$(cat <<EOF
 http://www.codecguide.com/download_k-lite_codec_pack_basic.htm
