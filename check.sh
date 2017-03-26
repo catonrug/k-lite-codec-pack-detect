@@ -141,9 +141,10 @@ fi
 emails=$(cat ../posting | sed '$aend of file')
 printf %s "$emails" | while IFS= read -r onemail
 do {
-python ../send-email.py "$onemail" "$filename $version" "https://f4e2f502eb9b965f53ed353a28336ebbc041e45b.googledrive.com/host/0B_3uBwg3RcdVMlJFWkxIN0Vvckk/$newfilename 
+python ../send-email.py "$onemail" "$filename $version" "$newfilename 
 $md5
-$sha1"
+$sha1
+https://drive.google.com/drive/folders/0B_3uBwg3RcdVMlJFWkxIN0Vvckk "
 } done
 echo
 
